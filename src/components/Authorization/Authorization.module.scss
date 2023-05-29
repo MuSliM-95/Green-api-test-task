@@ -1,0 +1,46 @@
+.authorizationWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40%;
+  width: 30%;
+  box-shadow: 0px 0px 2px 2px #fff;
+  font-size: 1.5vw;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 70%;
+    width: 90%;
+
+    input {
+      padding: 3%;
+      width: 100%;
+      outline: none;
+    }
+    button {
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      border: none;
+      background-color: #25d366;
+      border-radius: 3px;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .authorizationWrapper {
+    width: 35%;
+    height: 35%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .authorizationWrapper {
+    width: 50%;
+    height: 30%;
+    box-shadow: none;
+  }
+}
