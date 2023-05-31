@@ -11,6 +11,7 @@ const Authorization = () => {
     const [phoneNumber, setPhoneNumber] = useState("")
 
     const signingin = useAppSelector(state => state.chatSlice.existsWhatsapp)
+    const token = useAppSelector(state => state.chatSlice.token)
     const status = useAppSelector(state => state.chatSlice.status)
     const dispatch = useAppDispatch()
 
@@ -32,7 +33,7 @@ const Authorization = () => {
         dispatch(addChat({ IdInstance, ApiTokenInstance, phoneNumber }))
     }
 
-    if (signingin === true) {
+    if (token) {
         return <Navigate to={"/"} />
     }
 
