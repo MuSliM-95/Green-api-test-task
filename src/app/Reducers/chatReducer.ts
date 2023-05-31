@@ -1,18 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authorization } from "../AsyncFetch/authorizationFatch";
+import { addChat } from "../AsyncFetch/chatFatch";
 
 type State = {
     status: string,
-    id: string | null,
-    token: string | null,
-    statusInstance: string
+    existsWhatsapp: unknown
 }
 
 const initialState: State = {
     status: "initial" || "loading" || "error" || "success",
-    id: localStorage.getItem("IdInstance") || null,
-    token: localStorage.getItem("ApiTokenInstance") || null,
-    statusInstance: "offline" || "online"
+    existsWhatsapp: null ,
 }
 
 const chatSlice = createSlice({
@@ -21,19 +17,17 @@ const chatSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(authorization.pending, (state, action) => {
+            .addCase(addChat.pending, (state, action) => {
                 state.status = "loading";
 
             })
-            .addCase(authorization.fulfilled, (state, action) => {
-                state.status = "success";                
-                state.id = action.payload.IdInstance;
-                state.token = action.payload.ApiTokenInstance;
-                state.statusInstance = action.payload.statusInstance
-
+            .addCase(addChat.fulfilled, (state, action) => {
+                state.status = "success";
+                state.existsWhatsapp = action.payload
             })
-            .addCase(authorization.rejected, (state, action) => {
-                state.status = "error"
+            .addCase(addChat.rejected, (state, action) => {
+                state.status = "error";
+
             })
     }
 

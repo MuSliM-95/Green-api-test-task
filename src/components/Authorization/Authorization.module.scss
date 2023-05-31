@@ -15,11 +15,24 @@
     height: 70%;
     width: 90%;
 
-    input {
+    .input {
       padding: 3%;
       width: 100%;
       outline: none;
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
     }
+    .errorBlockActivi {
+      padding: 3%;
+      width: 100%;
+      outline: none;
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+      color: red;
+    }
+
     button {
       padding: 1%;
       width: 20%;

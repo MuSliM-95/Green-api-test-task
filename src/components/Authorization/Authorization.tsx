@@ -1,43 +1,65 @@
 import React, { ChangeEvent, useState } from "react";
 import styles from "./Authorization.module.scss"
 import { useAppDispatch, useAppSelector } from "../../hooks/hook";
-import { authorization } from "../../app/AsyncFetch/authorizationFatch";
+import { addChat } from "../../app/AsyncFetch/chatFatch";
 import { Navigate } from "react-router-dom";
 
+
 const Authorization = () => {
-    const [IdInstance, setIdInstance] = useState("1101825750")
-    const [ApiTokenInstance, setApiTokenInstance] = useState("068001e610304abdbf87c2f1d30c411d17d9cc6ca12e410e85")
-    
-    const token = useAppSelector(state => state.chatSlice.token)
+    const [IdInstance, setIdInstance] = useState("1101826233")
+    const [ApiTokenInstance, setApiTokenInstance] = useState("9e0f6a691c81461d8195038ce7dca04e1b3f52c284944698a3")
+    const [phoneNumber, setPhoneNumber] = useState("")
+
+    const signingin = useAppSelector(state => state.chatSlice.existsWhatsapp)
+    const status = useAppSelector(state => state.chatSlice.status)
     const dispatch = useAppDispatch()
 
-    const handleIdInstance = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(signingin, status);
+
+    const handleIdInstance = (e: ChangeEvent<HTMLInputElement>): void => {
         setIdInstance(e.target.value)
     }
-    const handleApiTokenInstance = (e: ChangeEvent<HTMLInputElement>) => {
+
+    const handleApiTokenInstance = (e: ChangeEvent<HTMLInputElement>): void => {
         setApiTokenInstance(e.target.value)
     }
 
-    const handleAuthorization = () => {
-        dispatch(authorization({ IdInstance, ApiTokenInstance }))
+    const handlePhoneNumber = (e: ChangeEvent<HTMLInputElement>): void => {
+        setPhoneNumber(e.target.value)
     }
 
-    if (token) {
+    const handleAuthorization = (): void => {
+        dispatch(addChat({ IdInstance, ApiTokenInstance, phoneNumber }))
+    }
+
+    if (signingin === true) {
         return <Navigate to={"/"} />
     }
+
     return (
         <div className={styles.authorizationWrapper}>
             <h1 className={styles.loginText}>Войти в чат</h1>
             <form>
                 <input type="text"
+                    className={status === "error" ? styles.errorBlockActivi : styles.input}
                     placeholder="Введите idInstance"
                     onChange={handleIdInstance}
                     value={IdInstance} />
 
                 <input type="text"
+                    className={status === "error" ? styles.errorBlockActivi : styles.input}
                     placeholder="Введите apiTokenInstance"
                     onChange={handleApiTokenInstance}
                     value={ApiTokenInstance}
+                />
+                <input
+                    className={!signingin && signingin !== null ? styles.errorBlockActivi : styles.input}
+                    type="number"
+                    name="phoneNumber"
+                    id="phone"
+                    onChange={handlePhoneNumber}
+                    value={phoneNumber}
+                    autoComplete="none"
                 />
                 <button onClick={handleAuthorization} type="button">Войти</button>
             </form>
