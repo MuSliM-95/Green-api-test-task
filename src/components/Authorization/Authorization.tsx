@@ -59,6 +59,7 @@ const Authorization: FC = () => {
                     onChange={handlePhoneNumber}
                     value={phoneNumber}
                     autoComplete="none"
+                    placeholder="Введите номер телефона"
                 />
                 <button onClick={handleAuthorization} type="button">Войти</button>
             </form>
