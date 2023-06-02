@@ -53,9 +53,6 @@ const chatSlice = createSlice({
             .addCase(getChatHistory.fulfilled, (state, action) => {
                 state.status = "success";
                 if (action.payload) {
-                    // if (!state.chat) {
-                    //     state.chat = []
-                    // }
                     state.chat.push(action.payload)
                     state.chat = state.chat.filter((mss, index, self) => index === self.findIndex((t) => t.id === mss.id))
 
@@ -72,9 +69,6 @@ const chatSlice = createSlice({
             .addCase(addMessage.fulfilled, (state, action) => {
                 state.status = "success";
                 if (action.payload) {
-                    // if (!state.chat) {
-                    //     state.chat = []
-                    // }
                     state.chat.push(action.payload)
                     return localStorage.setItem("chat", JSON.stringify(state.chat))
                 }

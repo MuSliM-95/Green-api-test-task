@@ -14,7 +14,6 @@ export interface Message {
     text: string,
     type: string
 }
-// const chat = JSON.parse(localStorage.getItem("chat")!)
 const phoneNumber = localStorage.getItem("phoneNumber")
 const IdInstance = localStorage.getItem("IdInstance")
 const ApiTokenInstance = localStorage.getItem("ApiTokenInstance")
