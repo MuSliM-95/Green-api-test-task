@@ -6,9 +6,9 @@ import { Navigate } from "react-router-dom";
 
 
 const Authorization: FC = () => {
-    const [IdInstance, setIdInstance] = useState("1101827145")
-    const [ApiTokenInstance, setApiTokenInstance] = useState("cb344e9cf07a4b97a0decb8fc9d2603eaea9b7f7e4e94a45b2")
-    const [phoneNumber, setPhoneNumber] = useState("79286428407")
+    const [IdInstance, setIdInstance] = useState("")
+    const [ApiTokenInstance, setApiTokenInstance] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
 
     const signingin = useAppSelector(state => state.chatSlice.existsWhatsapp)
     const token = useAppSelector(state => state.chatSlice.token)
