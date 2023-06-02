@@ -1,21 +1,19 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import styles from "./Authorization.module.scss"
 import { useAppDispatch, useAppSelector } from "../../hooks/hook";
 import { addChat } from "../../app/AsyncFetch/chatFatch";
 import { Navigate } from "react-router-dom";
 
 
-const Authorization = () => {
-    const [IdInstance, setIdInstance] = useState("1101826233")
-    const [ApiTokenInstance, setApiTokenInstance] = useState("9e0f6a691c81461d8195038ce7dca04e1b3f52c284944698a3")
-    const [phoneNumber, setPhoneNumber] = useState("")
+const Authorization: FC = () => {
+    const [IdInstance, setIdInstance] = useState("1101827145")
+    const [ApiTokenInstance, setApiTokenInstance] = useState("cb344e9cf07a4b97a0decb8fc9d2603eaea9b7f7e4e94a45b2")
+    const [phoneNumber, setPhoneNumber] = useState("79286428407")
 
     const signingin = useAppSelector(state => state.chatSlice.existsWhatsapp)
     const token = useAppSelector(state => state.chatSlice.token)
     const status = useAppSelector(state => state.chatSlice.status)
     const dispatch = useAppDispatch()
-
-    console.log(signingin, status);
 
     const handleIdInstance = (e: ChangeEvent<HTMLInputElement>): void => {
         setIdInstance(e.target.value)

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./ChatPage.module.scss"
 import Chat from "../../components/Chat/Chat";
 
 
-const ChatPage = () => {
+const ChatPage:FC = () => {
 
   
     return (
