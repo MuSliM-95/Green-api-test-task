@@ -56,9 +56,8 @@ export const getChatHistory = createAsyncThunk<Message, undefined, { rejectValue
                 method: "DELETE",
             })
         }
-        console.log(data);
 
-        if (data.body.typeWebhook !== "incomingMessageReceived") {
+        if (data?.body.typeWebhook !== "incomingMessageReceived") {
             return thunkApi.rejectWithValue({ error: "error" })
         }
         if (!data) {
@@ -71,7 +70,7 @@ export const getChatHistory = createAsyncThunk<Message, undefined, { rejectValue
 
         const payload: Message = {
             id: data.receiptId,
-            text: data?.body.messageData.textMessageData.textMessage,
+            text: data?.body?.messageData.textMessageData.textMessage,
             type: "incomingMessage"
         }
 

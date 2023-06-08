@@ -24,7 +24,7 @@ const Chat: FC = () => {
             left: 0,
             behavior: "smooth"
         })
-    })
+    },[])
 
     const logout = (): void => {
         dispatch(logoutChat())
